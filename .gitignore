@@ -1,0 +1,52 @@
+# 依赖、构建与缓存（所有子项目）
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.cache/
+*.tsbuildinfo
+
+# 本地环境与凭据；示例配置随源码保留
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+
+# SQLite 数据及日志、用户上传文件；演示图片源稿保留在 server/assets/
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+uploads/
+
+# 微信开发者工具的本地项目设置
+project.config.json
+project.private.config.json
+
+# 本地核验截图、临时报告；正式文档与架构图保留
+.verify/
+docs/*.visual-check.*
+
+# 日志与编辑器、系统文件
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.suo
+*.sw?

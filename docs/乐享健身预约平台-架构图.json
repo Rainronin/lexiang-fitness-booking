@@ -1,0 +1,252 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "乐享健身预约平台 · 系统架构",
+    "locale": "zh-CN",
+    "output": "docs/乐享健身预约平台-架构图.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "booking-path",
+        "label": "预约主链路",
+        "focus": [
+          "miniapp",
+          "api",
+          "auth",
+          "routes",
+          "booking",
+          "sqlite"
+        ],
+        "note": "会员从选时段到落库，中间只有一条写路径。"
+      },
+      {
+        "id": "access-tiers",
+        "label": "三级权限",
+        "focus": [
+          "admin_web",
+          "miniapp",
+          "api",
+          "auth",
+          "routes"
+        ],
+        "note": "同一个 JWT 中间件按 type 与 role 分发后台、管理员、会员三种权限。"
+      },
+      {
+        "id": "asset-path",
+        "label": "图片资源",
+        "focus": [
+          "admin_web",
+          "routes",
+          "upload",
+          "sqlite"
+        ],
+        "note": "图片落盘 uploads/ 后由 express.static 直出，不经过 /api。"
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      60,
+      30
+    ],
+    "cols": 3,
+    "gapX": 180,
+    "gapY": 36,
+    "cellW": 230,
+    "cellH": 92
+  },
+  "components": [
+    {
+      "id": "admin_web",
+      "type": "frontend",
+      "label": "admin-web 管理后台",
+      "sublabel": "Vue 3 + Vite + Pinia + Element Plus",
+      "tag": "员工 / 管理员 · :4180",
+      "brand": "vue",
+      "size": [
+        230,
+        88
+      ],
+      "row": 0,
+      "col": 0
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "Express 服务入口",
+      "sublabel": "CORS · JSON · 统一响应 { code, data, message }",
+      "tag": ":3000",
+      "brand": "node-js",
+      "size": [
+        230,
+        88
+      ],
+      "row": 0,
+      "col": 1
+    },
+    {
+      "id": "auth",
+      "type": "security",
+      "label": "JWT 三级鉴权",
+      "sublabel": "authAdmin / authSuper / authMember",
+      "tag": "7 天有效期",
+      "size": [
+        230,
+        88
+      ],
+      "row": 1,
+      "col": 1
+    },
+    {
+      "id": "upload",
+      "type": "backend",
+      "label": "图片上传",
+      "sublabel": "multer · 白名单 + 魔数校验 · ≤ 2MB",
+      "tag": "uploads/ 直出",
+      "size": [
+        230,
+        88
+      ],
+      "row": 1,
+      "col": 2
+    },
+    {
+      "id": "miniapp",
+      "type": "frontend",
+      "label": "miniapp 会员端",
+      "sublabel": "uni-app（Vue 3）→ H5 / 微信小程序",
+      "tag": "会员 · H5 :4174",
+      "brand": "vue",
+      "size": [
+        230,
+        88
+      ],
+      "row": 2,
+      "col": 0
+    },
+    {
+      "id": "routes",
+      "type": "backend",
+      "label": "业务路由层",
+      "sublabel": "12 个路由模块：课程 / 教练 / 排班 / 会员 / 统计",
+      "size": [
+        230,
+        88
+      ],
+      "row": 2,
+      "col": 1
+    },
+    {
+      "id": "booking",
+      "type": "backend",
+      "label": "预约事务",
+      "sublabel": "名额 / 重复 / 每日上限 / 已过时段",
+      "tag": "IMMEDIATE",
+      "size": [
+        230,
+        88
+      ],
+      "row": 3,
+      "col": 1
+    },
+    {
+      "id": "sqlite",
+      "type": "database",
+      "label": "SQLite data.db",
+      "sublabel": "better-sqlite3 同步 API · 9 张表",
+      "brand": "sqlite",
+      "size": [
+        230,
+        88
+      ],
+      "row": 3,
+      "col": 2
+    }
+  ],
+  "connections": [
+    {
+      "from": "admin_web",
+      "to": "api",
+      "label": "axios · Vite 代理 /api",
+      "variant": "emphasis"
+    },
+    {
+      "from": "miniapp",
+      "to": "api",
+      "label": "uni.request 直连 :3000/api",
+      "variant": "emphasis"
+    },
+    {
+      "from": "api",
+      "to": "auth",
+      "label": "解析 Bearer JWT",
+      "variant": "security",
+      "labelDy": 24
+    },
+    {
+      "from": "auth",
+      "to": "routes",
+      "label": "按角色放行",
+      "labelDy": 24
+    },
+    {
+      "from": "routes",
+      "to": "booking",
+      "label": "提交预约（事务）",
+      "variant": "emphasis",
+      "labelDy": 24
+    },
+    {
+      "from": "booking",
+      "to": "sqlite",
+      "label": "校验通过后写入",
+      "variant": "emphasis",
+      "labelAt": [
+        790,
+        570
+      ]
+    },
+    {
+      "from": "routes",
+      "to": "sqlite",
+      "label": "同步读写 9 张表"
+    },
+    {
+      "from": "routes",
+      "to": "upload",
+      "label": "POST /api/upload",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "两端一后端",
+      "items": [
+        "admin-web 开发态由 Vite 代理 /api 与 /uploads，线上同源",
+        "miniapp 一套代码输出 H5 与微信小程序，直连 :3000/api",
+        "Express 统一 /api 前缀与 { code, data, message } 响应"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "权限与预约口径",
+      "items": [
+        "authAdmin 后台账号、authSuper 仅管理员、authMember 会员端",
+        "会员端可约时段由 advance_days 自动截断并过滤已过时段",
+        "booking 部分唯一索引只约束未取消记录，取消后可重新预约"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "数据与资源",
+      "items": [
+        "SQLite 单文件 data.db，better-sqlite3 同步 API，9 张表",
+        "图片落盘 uploads/ 并静态直出，2MB 上限 + 扩展名与文件头双校验",
+        "小程序 image 不支持 SVG，种子封面为生成的占位 PNG"
+      ]
+    }
+  ]
+}

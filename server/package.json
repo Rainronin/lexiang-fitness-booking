@@ -1,0 +1,20 @@
+{
+  "name": "lexiang-server",
+  "version": "1.0.0",
+  "description": "乐享健身预约平台后端（Express + better-sqlite3）",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "seed": "node src/db/init.js",
+    "art:refresh": "node scripts/refresh-demo-art.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "better-sqlite3": "^13.0.3",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0"
+  }
+}

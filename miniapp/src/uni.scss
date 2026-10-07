@@ -1,0 +1,99 @@
+/**
+ * 乐享健身会员端 · 设计令牌唯一入口
+ * 主题：轻盈系统 × 训练节奏
+ * uni-app 会自动向每个 <style lang="scss"> 注入本文件变量，无需手动 import。
+ */
+
+/* ===== 品牌色 / 语义色 ===== */
+$lx-brand: #007aff;
+$lx-brand-deep: #0056b3;
+$lx-brand-soft: #e9f3ff;
+$lx-coral: #ff6b4a;
+$lx-coral-soft: #fff0eb;
+$lx-success: #30b56a;
+$lx-success-soft: #eaf8f0;
+$lx-warning: #f5a524;
+$lx-warning-soft: #fef5e7;
+$lx-danger: #e5484d;
+$lx-danger-soft: #fdeded;
+
+/* ===== 文字 / 表面 ===== */
+$lx-text: #1d1d1f;
+$lx-text-2: #6e6e73;
+$lx-text-3: #98989d;
+$lx-bg: #f5f5f7;
+$lx-surface: #ffffff;
+$lx-surface-2: #f0f1f3;
+$lx-line: rgba(60, 60, 67, 0.12);
+$lx-line-soft: rgba(60, 60, 67, 0.08);
+$lx-nav: #17181a;
+
+/* ===== 圆角 / 阴影 / 动效 ===== */
+$lx-radius-sm: 16rpx;   /* 8px */
+$lx-radius-md: 24rpx;   /* 12px */
+$lx-radius-lg: 32rpx;   /* 16px */
+$lx-radius-xl: 40rpx;   /* 20px */
+$lx-radius-pill: 999rpx;
+$lx-shadow-1: 0 2rpx 4rpx rgba(0, 0, 0, 0.04);
+$lx-shadow-2: 0 16rpx 48rpx rgba(0, 0, 0, 0.08);
+$lx-shadow-3: 0 40rpx 120rpx rgba(0, 0, 0, 0.14);
+$lx-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+$lx-ease-in: cubic-bezier(0.4, 0, 1, 1);
+$lx-ease-spring: cubic-bezier(0.2, 0.9, 0.2, 1.15);
+
+/* ===== 间距（4 基单位，rpx 按 750 设计宽换算） ===== */
+$lx-space-1: 8rpx;
+$lx-space-2: 16rpx;
+$lx-space-3: 24rpx;
+$lx-space-4: 32rpx;
+$lx-space-5: 48rpx;
+$lx-space-6: 64rpx;
+$lx-space-7: 96rpx;
+
+/* ===== 字体层级 ===== */
+$lx-font-display: 48rpx;
+$lx-font-title: 40rpx;
+$lx-font-section: 32rpx;
+$lx-font-body: 28rpx;
+$lx-font-small: 24rpx;
+
+/* ===== 兼容 uni-app 默认变量 ===== */
+$uni-color-primary: $lx-brand;
+$uni-color-success: $lx-success;
+$uni-color-warning: $lx-warning;
+$uni-color-error: $lx-danger;
+
+$uni-text-color: $lx-text;
+$uni-text-color-inverse: #fff;
+$uni-text-color-grey: $lx-text-2;
+$uni-text-color-placeholder: $lx-text-3;
+$uni-text-color-disable: #c7c7cc;
+
+$uni-bg-color: $lx-surface;
+$uni-bg-color-grey: $lx-surface-2;
+$uni-bg-color-hover: #e9e9ec;
+$uni-bg-color-mask: rgba(0, 0, 0, 0.45);
+
+$uni-border-color: $lx-line;
+
+$uni-font-size-sm: 24rpx;
+$uni-font-size-base: 28rpx;
+$uni-font-size-lg: 32rpx;
+
+$uni-img-size-sm: 40rpx;
+$uni-img-size-base: 52rpx;
+$uni-img-size-lg: 80rpx;
+
+$uni-border-radius-sm: $lx-radius-sm;
+$uni-border-radius-base: $lx-radius-md;
+$uni-border-radius-lg: $lx-radius-lg;
+$uni-border-radius-circle: 50%;
+
+$uni-spacing-row-sm: 8rpx;
+$uni-spacing-row-base: 16rpx;
+$uni-spacing-row-lg: 24rpx;
+$uni-spacing-col-sm: 8rpx;
+$uni-spacing-col-base: 16rpx;
+$uni-spacing-col-lg: 24rpx;
+
+$uni-opacity-disabled: 0.5;
